@@ -1,3 +1,4 @@
+// TODO: add conditional frame overlay on given categories (e.g.: a Play button on top of 'music' products)
 const CategoryData = [
   {
     id: 1,

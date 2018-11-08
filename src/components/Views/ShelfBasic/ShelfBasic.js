@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ProductItem from '../Product/ProductItem.js';
-import ProductData from '../../data/Products.js';
+import ProductItem from './_Product.js';
+import ProductData from '../../../data/Products.js';
 
 class ShelfBasic extends Component {
 
   render() {
     var shelf = this;
     var filters = this.props.filters;
+
+    /* Filters rendering of shelf
+    /* products based on active filters.
+    /************************************/
   	var products = ProductData.map(function(product) {
       var displayCategory;
       product.categories.some(function (v) {
         if(!displayCategory)
           displayCategory = filters.categories.indexOf(v) >= 0;
+        return null;
       });
       if((!filters.categories.length || (filters.categories && displayCategory)) &&
          (!filters.priceRange.length || (product.price > filters.priceRange[0] && product.price < filters.priceRange[1])))
@@ -26,10 +31,11 @@ class ShelfBasic extends Component {
           </li>
         );
       }
+      return null;
   	});
 
     return (
-      <div id="vshop-products">
+      <div id="vshop-view-shelf" className="basic">
         <h1>Products</h1>
         <ul id="vshop-products-list">
         	{products}
@@ -39,15 +45,12 @@ class ShelfBasic extends Component {
   }
 
   addToCart = (item) => {
-    if(!item.state.added) {
-      this.props.addProductToCart(item);
-    }
+    this.props.addProductToCart(item);
   }
 
+  // Deprecated.
   removeFromCart = (item) => {
-    if(item.state.added) {
-      this.props.removeProductFromCart(item.props.data.id);
-    }
+    this.props.removeProductFromCart(item.props.data.id);
   }
 }
 

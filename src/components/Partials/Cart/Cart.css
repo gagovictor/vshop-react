@@ -1,0 +1,79 @@
+#vshop-cart {
+  color: #fff;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 50px;
+}
+
+#vshop-cart-list {
+  padding: 25px 12.5px 12.5px 12.5px;
+  display: block;
+  list-style: none;
+  position: relative;
+  top: 0;
+  background: #222;
+}
+
+#vshop-cart-list ul {
+  margin: 0;
+  padding: 0;
+}
+
+#vshop-cart-list h4 {
+  position: relative;
+  padding-right: 72.5px;
+  margin-left: 12.5px;
+}
+
+#vshop-cart-list li {
+  height: 20px;
+  position: relative;
+  display: block;
+  margin-bottom: 12.5px;
+}
+
+#vshop-cart-list li h4 {
+  position: absolute;
+  left: 0;
+  padding-left: 30px;
+  padding-right: 60px;
+  width: calc(100% - 90px);
+}
+
+#vshop-cart-list span {
+  color: cyan;
+  float: right;
+  top: 0;
+  position: absolute;
+  right: 12.5px;
+}
+
+.vshop-cart-resume {
+  margin-top: 25px;
+}
+
+.vshop-cart-total {
+  display: inline-block;
+  padding-right: 100px;
+  margin-top: 5px;
+}
+
+.vshop-cart-remove {
+  position: absolute;
+  left: 0;
+  border: none;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 0px;
+  padding-left: 5.5px;
+  padding-bottom: 5px;
+}
+
+.vshop-cart-checkout {
+  width: 125px;
+  right: 12.5px;
+  position: absolute;
+}

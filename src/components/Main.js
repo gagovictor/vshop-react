@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Cart from './Cart/Cart';
-import Filters from './Shelves/Filters';
-import ShelfBasic from './Shelves/ShelfBasic';
+import Filters from './Partials/Filters/Filters';
+import ShelfBasic from './Views/ShelfBasic/ShelfBasic';
+import Product from './Views/Product/Product';
+import Checkout from './Views/Checkout/Checkout';
+import Payment from './Views/Payment/Payment';
 import './VShop.css';
 
 class Main extends Component {
@@ -9,6 +12,8 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      view: 'shelf',
+      product_focus: null,
       items: [],
       total: 0,
       currency: 'R$',
@@ -23,30 +28,60 @@ class Main extends Component {
     return (
         <div id="vshop-main-view">
           <div className="vshop-shelf-container">
-            <ShelfBasic
-              filters = { this.state.filters }
-              addProductToCart = { this.addToCart }
-              removeProductFromCart = { this.removeFromCart } />
+            { this.state.view === 'shelf' &&
+              <ShelfBasic
+                filters = { this.state.filters }
+                addProductToCart = { this.addProductToCart }
+                removeProductFromCart = { this.removeProductFromCart } />
+            }
+            { this.state.view === 'product' &&
+              <Product switchView = { this.switchView } />
+            }
+            { this.state.view === 'checkout' &&
+              <Checkout switchView = { this.switchView } />
+            }
+            { this.state.view === 'payment' &&
+              <Payment switchView = { this.switchView } />
+            }
           </div>
           <div className="vshop-sidebar">
-            <Cart cartData = { this.state } />
-            <Filters
-              filterCategory = { this.filterCategory }
-              setPriceRange = { this.setPriceRange } />
+            <Cart
+              cartData = { this.state }
+              removeProduct = { this.removeProductFromCart }
+              switchView = { this.switchView } />
+            { this.state.view === 'shelf' &&
+              <Filters
+                filterCategory = { this.filterCategory }
+                setPriceRange = { this.setPriceRange } />
+            }
           </div>
         </div>
     );
   }
 
-  // Shelf - Cart Communication
-  addToCart = (item) => {
-    this.state.items.push(item);
-    this.updateSum();
+  /**************************
+   * View / state management
+   ***************************/
+  switchView = (viewSwitched) => {
+    if(typeof viewSwitched != undefined)
+      this.setState({ view : viewSwitched });
   }
 
-  removeFromCart = (id) => {
+  /*******************************
+  /* Components Interaction Logic
+  /********************************/
+
+  /* Shelf - Cart Communication
+   *****************************/
+  addProductToCart = (item) => {
+    this.state.items.push(item);
+    this.updateSum();
+    console.log(this.state.items);
+  }
+
+  removeProductFromCart = (id) => {
     var index;
-    this.state.items.some(function(item, i){
+    this.state.items.some(function(item, i) {
       if(item.props.data.id === id)
         index = i;
       return i;
@@ -62,11 +97,12 @@ class Main extends Component {
     var price = 0;
     for(let i = 0; i < this.state.items.length; i ++)
       price += this.state.items[i].props.data.price;
-  	price = Math.round((price + 0.00001) * 10) / 100;
+    price = price.toFixed(2);
     this.setState({ total : price });
   }
 
-  // Filters - Shelf Communication
+  /* Filters - Shelf Communication
+   ********************************/
   filterCategory = (categories) => {
     var filters = this.state.filters;
     filters.categories = categories;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ProductData from '../../data/Products';
-import CategoryData from '../../data/Categories';
+import ProductData from '../../../data/Products';
+import CategoryData from '../../../data/Categories';
 import './Filters.css';
 
 class Filters extends Component {
@@ -21,11 +21,12 @@ class Filters extends Component {
 
     // Price Range Filter
     var priceMin = 1e10, priceMax = 0;
-    var prices = ProductData.map(function(product) {
+    ProductData.map(function(product) {
       if(product.price < priceMin)
         priceMin = Math.round(product.price);
       if(product.price > priceMax)
         priceMax = Math.round(product.price);
+      return null;
     });
     var priceRange = <input type="range"
       min={priceMin} max={priceMax} defaultValue={/*Math.round(((priceMax - priceMin) / 2))*/0} step="1"

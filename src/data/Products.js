@@ -2,7 +2,7 @@ const ProductData = [
   {
     id: 1,
     name: 'Alien (Digital Single)',
-    price: 0.90,
+    price: 0.95,
     currency: 'R$',
     image: './images/products/product_thumb_01.jpg',
     categories: [

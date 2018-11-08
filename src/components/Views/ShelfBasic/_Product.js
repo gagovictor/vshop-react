@@ -5,25 +5,8 @@ import './Product.css';
 
 class ProductItem extends Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			added: false,
-			amount: 1
-		};
-	}
-
 	handleClick = () => {
-		if(!this.state.added)
-		{
-      		this.setState({ added: true });
-			this.props.addToCart(this);
-		}
-		else
-		{
-      		this.setState({ added: false });
-			this.props.removeFromCart(this);
-		}
+		this.props.addToCart(this);
 	}
 
 	render() {
@@ -39,7 +22,7 @@ class ProductItem extends Component {
 					<h4 className="vshop-product-list-price">{item.currency} {item.price}</h4>
 					<button className="vshop-product-list-btn"
 						onClick={this.handleClick}>
-						{!this.state.added ? "Comprar" : "Remover"}
+						Add to cart
 					</button>
 				</div></div>
 		);
@@ -48,8 +31,7 @@ class ProductItem extends Component {
 
 ProductItem.propTypes = {
   data: PropTypes.object.isRequired,
-  addToCart: PropTypes.func.isRequired,
-  removeFromCart: PropTypes.func.isRequired
+  addToCart: PropTypes.func.isRequired
 }
 
 export default ProductItem;
