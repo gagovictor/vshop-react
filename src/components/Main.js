@@ -30,7 +30,9 @@ class Main extends Component {
           </div>
           <div className="vshop-sidebar">
             <Cart cartData = { this.state } />
-            <Filters filterCategory = { this.filterCategory } />
+            <Filters
+              filterCategory = { this.filterCategory }
+              setPriceRange = { this.setPriceRange } />
           </div>
         </div>
     );
@@ -68,6 +70,12 @@ class Main extends Component {
   filterCategory = (categories) => {
     var filters = this.state.filters;
     filters.categories = categories;
+    this.setState({ filters : filters });
+  }
+
+  setPriceRange = (priceMin, priceMax) => {
+    var filters = this.state.filters;
+    filters.priceRange = [priceMin, priceMax];
     this.setState({ filters : filters });
   }
 

@@ -6,7 +6,7 @@
 }
 
 #vshop-filters-list {
-  padding: 12.5px;
+  padding: 12.5px 12.5px 25px 12.5px;
   display: block;
   list-style: none;
   position: relative;
@@ -20,9 +20,14 @@
   list-style: none;
 }
 
-#vshop-filters-list h4 {
+#vshop-filters-list h3 {
   position: relative;
   padding-right: 60px;
+  margin: 25px auto 12.5px auto;
+}
+
+#vshop-filters-list h3:nth-of-type(1) {
+  margin-top: 12.5px;
 }
 
 #vshop-filters-list span {

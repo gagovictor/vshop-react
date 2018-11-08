@@ -14,7 +14,8 @@ class ShelfBasic extends Component {
         if(!displayCategory)
           displayCategory = filters.categories.indexOf(v) >= 0;
       });
-      if(!filters.categories.length || (filters.categories && displayCategory))
+      if((!filters.categories.length || (filters.categories && displayCategory)) &&
+         (!filters.priceRange.length || (product.price > filters.priceRange[0] && product.price < filters.priceRange[1])))
       {
     	 return (
           <li className="vshop-product-list-item" key={product.id}>
