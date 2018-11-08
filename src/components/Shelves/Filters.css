@@ -1,11 +1,11 @@
-#vshop-cart {
+#vshop-filters {
   color: #fff;
   width: 100%;
   display: inline-block;
   margin-bottom: 50px;
 }
 
-#vshop-cart-list {
+#vshop-filters-list {
   padding: 12.5px;
   display: block;
   list-style: none;
@@ -14,17 +14,18 @@
   background: #222;
 }
 
-#vshop-cart-list ul {
+#vshop-filters-list ul {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
-#vshop-cart-list h4 {
+#vshop-filters-list h4 {
   position: relative;
   padding-right: 60px;
 }
 
-#vshop-cart-list span {
+#vshop-filters-list span {
   color: cyan;
   float: right;
   top: 0;

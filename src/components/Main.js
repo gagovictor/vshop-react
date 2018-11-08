@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Cart from './Cart/Cart';
+import Filters from './Shelves/Filters';
 import ShelfBasic from './Shelves/ShelfBasic';
 import './VShop.css';
 
@@ -10,21 +11,32 @@ class Main extends Component {
     this.state = {
       items: [],
       total: 0,
-      currency: 'BRL'
+      currency: 'R$',
+      filters: {
+        categories: [],
+        priceRange: []
+      },
     };
   }
 
   render() {
     return (
         <div id="vshop-main-view">
-          <ShelfBasic
-          	addProductToCart = { this.addToCart }
-          	removeProductFromCart = { this.removeFromCart } />
-          <Cart cartData = { this.state } />
+          <div className="vshop-shelf-container">
+            <ShelfBasic
+              filters = { this.state.filters }
+              addProductToCart = { this.addToCart }
+              removeProductFromCart = { this.removeFromCart } />
+          </div>
+          <div className="vshop-sidebar">
+            <Cart cartData = { this.state } />
+            <Filters filterCategory = { this.filterCategory } />
+          </div>
         </div>
     );
   }
 
+  // Shelf - Cart Communication
   addToCart = (item) => {
     this.state.items.push(item);
     this.updateSum();
@@ -48,7 +60,15 @@ class Main extends Component {
     var price = 0;
     for(let i = 0; i < this.state.items.length; i ++)
       price += this.state.items[i].props.data.price;
+  	price = Math.round((price + 0.00001) * 10) / 100;
     this.setState({ total : price });
+  }
+
+  // Filters - Shelf Communication
+  filterCategory = (categories) => {
+    var filters = this.state.filters;
+    filters.categories = categories;
+    this.setState({ filters : filters });
   }
 
 }

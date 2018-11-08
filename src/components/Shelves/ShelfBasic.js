@@ -4,17 +4,27 @@ import ProductItem from '../Product/ProductItem.js';
 import ProductData from '../../data/Products.js';
 
 class ShelfBasic extends Component {
+
   render() {
     var shelf = this;
+    var filters = this.props.filters;
   	var products = ProductData.map(function(product) {
-  		return (
-  				<li className="vshop-product-list-item" key={product.id}>
+      var displayCategory;
+      product.categories.some(function (v) {
+        if(!displayCategory)
+          displayCategory = filters.categories.indexOf(v) >= 0;
+      });
+      if(!filters.categories.length || (filters.categories && displayCategory))
+      {
+    	 return (
+          <li className="vshop-product-list-item" key={product.id}>
             <ProductItem
               data = { product }
               addToCart = { shelf.addToCart }
               removeFromCart = { shelf.removeFromCart } />
           </li>
-  		)
+        );
+      }
   	});
 
     return (
@@ -41,6 +51,7 @@ class ShelfBasic extends Component {
 }
 
 ShelfBasic.propTypes = {
+  filters: PropTypes.object.isRequired,
   addProductToCart: PropTypes.func.isRequired,
   removeProductFromCart: PropTypes.func.isRequired
 }

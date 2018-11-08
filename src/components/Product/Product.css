@@ -1,66 +1,59 @@
-#vshop-products {
-  width: 60%;
-  display: inline-block;
-  position: relative;
-}
-
-#vshop-cart {
-  width: 35%;
-  position: relative;
-  display: inline-block;
-  margin-left: 50px;
-}
-
 #vshop-products-list {
-  display: block;
-  position: relative;
-  min-height: 300px;
   top: 0;
-  background: #222;
   padding: 0;
+  width: 100%;
+  display: block;
+  background: #222;
+  min-height: 300px;
+  position: relative;
 }
 
 .vshop-product-list-item {
-  width: calc(33.33% - 25px);
-  min-width: 200px;
-  background: #fff;
-  box-shadow: 0px 10px 10px -10px rgba(0,0,0,0.25);
-  display: inline-block;
-  margin: 12.5px;
-  position: relative;
   color: #333;
   line-height: 1;
+  margin: 12.5px;
+  min-width: 200px;
+  background: #fff;
   overflow: hidden;
+  position: relative;
+  display: inline-block;
+  width: calc(33.33% - 25px);
+  box-shadow: 0px 10px 10px -10px rgba(0,0,0,0.25);
 }
 
 .vshop-product-list-image {
-  width: 100%;
-  padding-top: 100%;
-  background: green;
-  position: relative;
+  width: 101%;
   margin: 0 auto;
+  overflow: hidden;
+  padding-top: 101%;
+  position: relative;
 }
 
 .vshop-product-list-image img {
-  position: absolute;
   top: 0;
-  left: 0;
-  object-fit: contain;
+  left: -1px;
   width: 100%;
   height: 100%;
+  position: absolute;
+  object-fit: contain;
+  transition: transform 0.5s ease-in-out;
+}
+
+.vshop-product-list-item:hover img {
+  transform: scale(1.15);
 }
 
 .vshop-product-list-name {
   height: 36px;
-  padding: 12.5px;
   display: flex;
+  padding: 12.5px;
   align-items: center;
   justify-content: left;
 }
 
 .vshop-product-list-name h3 {
-  margin-bottom: 0;
   display: block;
+  margin-bottom: 0;
   position: relative;
 }
 
@@ -71,13 +64,13 @@
 }
 
 .vshop-product-list-price {
-  margin-left: 12.5px;
   width: calc(50%);
+  margin-left: 12.5px;
   display: inline-block;
 }
 
 .vshop-product-list-btn {
+  width: calc(50%);
   margin-right: 12.5px;
   display: inline-block;
-  width: calc(50%);
 }

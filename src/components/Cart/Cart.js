@@ -4,15 +4,9 @@ import './Cart.css';
 
 class Cart extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     var cartData = this.props.cartData;
-    console.log(cartData);
-    var itemList = cartData.items.map(function(item){
-      console.log("here");
+    var itemList = cartData.items.map(function(item) {
       return (
         <li className="vshop-cart-item" key={item.props.data.id} >
           <h4> {item.props.data.name} <span> {item.props.data.currency} {item.props.data.price}  </span></h4>

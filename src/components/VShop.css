@@ -35,3 +35,16 @@
   position: relative;
   align-items: top;
 }
+
+.vshop-shelf-container {
+  width: 60%;
+  display: inline-block;
+  position: relative;
+}
+
+.vshop-sidebar {
+  width: 35%;
+  position: relative;
+  display: inline-block;
+  margin-left: 50px;
+}
