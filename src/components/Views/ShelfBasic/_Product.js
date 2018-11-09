@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-//import Cart from '../Cart/Cart';
-import './Product.css';
+import './_Product.css';
 
-class ProductItem extends Component {
+class ShelfBasic_Product extends Component {
 
 	handleClick = () => {
 		this.props.addToCart(this);
@@ -13,7 +12,8 @@ class ProductItem extends Component {
 		var item = this.props.data;
 		return (<div>
 				<div className="vshop-product-list-image">
-					<img src={item.image} alt={item.name}/>
+					<a href="#" onClick={this.viewProduct.bind(this)} alt={"More info on "+item.name} data-product-id={item.id}></a>
+					<img src={item.image} alt={item.name} />
 				</div>
 				<div className="vshop-product-list-name">
 					<h3>{item.name}</h3>
@@ -27,11 +27,16 @@ class ProductItem extends Component {
 				</div></div>
 		);
 	}
+
+	viewProduct = (e) => {
+		this.props.viewProduct(e.target.getAttribute('data-product-id'));
+	}
 }
 
-ProductItem.propTypes = {
+ShelfBasic_Product.propTypes = {
   data: PropTypes.object.isRequired,
+  viewProduct: PropTypes.func.isRequired,
   addToCart: PropTypes.func.isRequired
 }
 
-export default ProductItem;
+export default ShelfBasic_Product;

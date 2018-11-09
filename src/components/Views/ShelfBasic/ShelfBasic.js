@@ -26,6 +26,7 @@ class ShelfBasic extends Component {
           <li className="vshop-product-list-item" key={product.id}>
             <ProductItem
               data = { product }
+              viewProduct = { shelf.viewProduct }
               addToCart = { shelf.addToCart }
               removeFromCart = { shelf.removeFromCart } />
           </li>
@@ -44,6 +45,10 @@ class ShelfBasic extends Component {
     );
   }
 
+  viewProduct = (id) => {
+    this.props.viewProduct(id);
+  }
+
   addToCart = (item) => {
     this.props.addProductToCart(item);
   }
@@ -56,6 +61,7 @@ class ShelfBasic extends Component {
 
 ShelfBasic.propTypes = {
   filters: PropTypes.object.isRequired,
+  viewProduct: PropTypes.func.isRequired,
   addProductToCart: PropTypes.func.isRequired,
   removeProductFromCart: PropTypes.func.isRequired
 }

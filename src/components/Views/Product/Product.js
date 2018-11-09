@@ -2,36 +2,47 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //import Cart from '../Cart/Cart';
 import './Product.css';
+import ProductData from '../../../data/Products.js';
 
-class ShelfBasic_Product extends Component {
+class Product extends Component {
 
-	handleClick = () => {
-		this.props.addToCart(this);
+	constructor(props) {
+		super(props);
+		var p = this;
+  		var products = ProductData.map(function(product) {
+  			if(product.id == p.props.productId)
+  				p.data = product;
+  		});
+	}
+
+	addToCart = () => {
+		this.props.addProductToCart(this);
 	}
 
 	render() {
 		var item = this.props.data;
-		return (<div>
-				<div className="vshop-product-list-image">
-					<img src={item.image} alt={item.name}/>
+		return (
+			<div id="vshop-view-product">
+				<h1>{this.data.name}</h1>
+					<div className="vshop-product-container">
+					<div className="vshop-hero">
+						<img src={this.data.image} alt={this.data.name} />
+					</div>
+					<div className="vshop-description">
+						<p>{this.data.description}</p>
+					</div>
 				</div>
-				<div className="vshop-product-list-name">
-					<h3>{item.name}</h3>
-				</div>
-				<div className="vshop-product-list-row">
-					<h4 className="vshop-product-list-price">{item.currency} {item.price}</h4>
-					<button className="vshop-product-list-btn"
-						onClick={this.handleClick}>
-						Add to cart
-					</button>
-				</div></div>
+				<button onClick={this.addToCart} > Add to cart</button>
+			</div>
 		);
+
 	}
 }
 
-ShelfBasic_Product.propTypes = {
-  data: PropTypes.object.isRequired,
+Product.propTypes = {
+  productId: PropTypes.number.isRequired,
+  addProductToCart: PropTypes.func.isRequired,
   addToCart: PropTypes.func.isRequired
 }
 
-export default ShelfBasic_Product;
+export default Product;
