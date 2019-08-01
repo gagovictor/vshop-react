@@ -8,14 +8,14 @@ class Cart extends Component {
     var cart = this;
     var cartData = this.props.cartData;
     var itemList = cartData.items.map(function(item) {
-      var key = item.props.data.id + '_' + (new Date().getTime()) + '_' + Math.random(100);
+      var key = item.id + '_' + (new Date().getTime()) + '_' + Math.random(100);
       return (
         <li className="vshop-cart-item" key={key} >
-          <button className="vshop-cart-remove" onClick={cart.removeProduct.bind(this)} data-product-id={item.props.data.id}>
+          <button className="vshop-cart-remove" onClick={cart.removeProduct.bind(this)} data-product-id={item.id}>
             x
           </button>
-          <h4> {item.props.data.name}
-            <span> {item.props.data.currency} {item.props.data.price} </span>
+          <h4> {item.name}
+            <span> {item.currency} {item.price} </span>
           </h4>
         </li>
       );

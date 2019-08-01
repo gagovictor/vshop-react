@@ -5,7 +5,7 @@ import './_Product.css';
 class ShelfBasic_Product extends Component {
 
 	handleClick = () => {
-		this.props.addToCart(this);
+		this.props.addToCart(this.props.data);
 	}
 
 	render() {

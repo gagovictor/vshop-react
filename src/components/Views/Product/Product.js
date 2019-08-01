@@ -15,9 +15,9 @@ class Product extends Component {
   		});
 	}
 
-	addToCart = () => {
-		this.props.addProductToCart(this);
-	}
+  	addToCart = (item) => {
+    	this.props.addProductToCart(this.data);
+  	}
 
 	render() {
 		var item = this.props.data;
@@ -32,7 +32,7 @@ class Product extends Component {
 						<p>{this.data.description}</p>
 					</div>
 				</div>
-				<button onClick={this.addToCart} > Add to cart</button>
+				<button onClick={this.addToCart.bind(item)} > Add to cart</button>
 			</div>
 		);
 

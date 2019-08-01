@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ProductItem from './_Product.js';
+import Product from './_Product.js';
 import ProductData from '../../../data/Products.js';
 
 class ShelfBasic extends Component {
@@ -24,7 +24,7 @@ class ShelfBasic extends Component {
       {
     	 return (
           <li className="vshop-product-list-item" key={product.id}>
-            <ProductItem
+            <Product
               data = { product }
               viewProduct = { shelf.viewProduct }
               addToCart = { shelf.addToCart }

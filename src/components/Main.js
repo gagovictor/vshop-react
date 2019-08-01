@@ -36,6 +36,12 @@ class Main extends Component {
   /* Components Interaction Logic
   /********************************/
 
+  /* Header - Link home
+   *********************/
+  viewHome = () => {
+    this.setState({ view : 'shelf' });
+  }
+
   /* Shelf Product - View Management
    **********************************/
   viewProduct = (id) => {
@@ -45,6 +51,7 @@ class Main extends Component {
   /* Shelf - Cart Communication
    *****************************/
   addProductToCart = (item) => {
+    console.log(item);
     this.state.items.push(item);
     this.updateSum();
     console.log(this.state.items);
@@ -52,7 +59,7 @@ class Main extends Component {
   removeProductFromCart = (id) => {
     var index;
     this.state.items.some(function(item, i) {
-      if(item.props.data.id === id)
+      if(item.id === id)
         index = i;
       return i;
     });
@@ -64,8 +71,9 @@ class Main extends Component {
   }
   updateSum = () => {
     var price = 0;
-    for(let i = 0; i < this.state.items.length; i ++)
-      price += this.state.items[i].props.data.price;
+    this.state.items.some(function(item, i) {
+      price += item.price;
+    });
     price = price.toFixed(2);
     this.setState({ total : price });
   }
